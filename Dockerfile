@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y && apt-get upgrade -y && \
 \
 # install dependancies
-    apt-get -y install apt-transport-https ca-certificates gnupg-agent curl
+    apt-get -y install apt-transport-https ca-certificates gnupg-agent curl xmlstarlet
 
 # add plex gpg key
 RUN mkdir /root/.gnupg/ && chmod 600 /root/.gnupg && \
