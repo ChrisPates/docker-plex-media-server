@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  plex:
+    image: elcrp96/plex-media-server
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=999
+      - PGID=995
+      - VERSION=docker
+      - PLEX_CLAIM= #optional
+    volumes:
+      - /mnt/storage/local/plex/config:/config # Where you want your Plex Library/Config folder to be
+      - /mnt/storage/local/plex/transcode:/transcode # A path for transcoding
+      - /mnt/storage/local/plex/transcode/Sync+:/config/Library/Application Support/Plex Media Server/Cache/Transcode/Sync+ # To keep sync transcoding in the transcode folder
+      - /mnt/storage/local/plex/transcode/Sync:/config/Library/Application Support/Plex Media Server/Cache/Transcode/Sync   # To keep sync transcoding in the transcode folder
+      - /mnt/storage/sync/media:/mnt/media # Media folder
+      - /mnt/storage/local/certs/plex/node.pfx:/certs/node.pfx # Certificate File
+    restart: unless-stopped
